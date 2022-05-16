@@ -59,4 +59,15 @@ public class Pedido {
                 '}';
     }
 
+    public BigDecimal getValorTotal() {
+        return getPreco().multiply(new BigDecimal(getQuantidade()));
+    }
+
+    public boolean isMaisBaratoQue(Pedido outroPedido) {
+        return true;
+    }
+
+    public boolean isMaisCaroQue(Pedido outroPedido) {
+        return true;
+    }
 }
