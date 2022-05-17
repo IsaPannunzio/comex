@@ -1,5 +1,7 @@
 package br.com.alura.comex;
 
+import br.com.alura.comex.Main;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -64,7 +66,7 @@ public class Pedido {
     }
 
     public boolean isMaisBaratoQue(Pedido outroPedido) {
-        return true;
+            return true;
     }
 
     public boolean isMaisCaroQue(Pedido outroPedido) {
