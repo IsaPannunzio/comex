@@ -15,11 +15,11 @@ public class ProcessadorDeCsv {
 
     public List<Pedido> listaPedidos(String nomeArquivo) {
 
-        ArrayList<Pedido> pedidos = new ArrayList<>();
+        List<Pedido> pedidos = new ArrayList<>();
 
         try {
             URL recursoCSV = ClassLoader.getSystemResource("pedidos.csv");
-            Path caminhoDoArquivo = caminhoDoArquivo = Path.of(recursoCSV.toURI());
+            Path caminhoDoArquivo = Path.of(recursoCSV.toURI());
 
             Scanner leitorDeLinhas = new Scanner(caminhoDoArquivo);
 
