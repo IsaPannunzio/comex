@@ -1,7 +1,5 @@
 package br.com.alura.comex;
 
-import br.com.alura.comex.Main;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -63,17 +61,5 @@ public class Pedido {
 
     public BigDecimal getValorTotal() {
         return getPreco().multiply(new BigDecimal(getQuantidade()));
-    }
-
-    public boolean isMaisBaratoQue(Pedido outroPedido) {
-
-        return true;
-    }
-
-    public boolean isMaisCaroQue(Pedido outroPedido) {
-//        if (pedidoMaisCaro == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade()))) > 0) {
-//            pedidoMaisCaro = pedidoAtual;
-//        }
-        return true;
     }
 }

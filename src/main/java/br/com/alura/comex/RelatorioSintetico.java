@@ -1,6 +1,7 @@
 package br.com.alura.comex;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 
 public class RelatorioSintetico {
@@ -36,15 +37,11 @@ public class RelatorioSintetico {
     }
 
     public Pedido getPedidoMaisBarato(List<Pedido> listaPedidos) {
-        return pedidoMaisBarato;
+        return listaPedidos.stream().min(Comparator.comparing(Pedido::getValorTotal)).orElseThrow(() -> new IllegalArgumentException("A lista de pedidos está vazia"));
     }
 
     public Pedido getPedidoMaisCaro(List<Pedido> listaPedidos) {
-        return pedidoMaisCaro;
-    }
-
-    public CategoriasProcessadas getCategoriasProcessadas() {
-        return categoriasProcessadas;
+        return listaPedidos.stream().max(Comparator.comparing(Pedido::getValorTotal)).orElseThrow(() -> new IllegalArgumentException("A lista de pedidos está vazia"));
     }
 
     public int getTotalDeCategorias(List<Pedido> listaPedidos) {
