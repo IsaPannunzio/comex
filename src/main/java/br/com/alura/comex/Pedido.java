@@ -66,10 +66,14 @@ public class Pedido {
     }
 
     public boolean isMaisBaratoQue(Pedido outroPedido) {
-            return true;
+
+        return true;
     }
 
     public boolean isMaisCaroQue(Pedido outroPedido) {
+//        if (pedidoMaisCaro == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade()))) > 0) {
+//            pedidoMaisCaro = pedidoAtual;
+//        }
         return true;
     }
 }

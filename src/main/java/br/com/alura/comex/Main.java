@@ -10,49 +10,20 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-        ArrayList<Pedido> pedidos = new ArrayList<>();
+
+        String pedidosCSV = "pedidos.csv";
+        ProcessadorDeCsv processadorDeCsv = new ProcessadorDeCsv();
+        List<Pedido> listaPedidos = processadorDeCsv.listaPedidos(pedidosCSV);
+        RelatorioSintetico relatorioSintetico = new RelatorioSintetico(listaPedidos);
 
 
-        int totalDeProdutosVendidos = 0;
-        int totalDePedidosRealizados = 0;
-        BigDecimal montanteDeVendas = BigDecimal.ZERO;
-        Pedido pedidoMaisBarato = null;
-        Pedido pedidoMaisCaro = null;
-
-        CategoriasProcessadas categoriasProcessadas = new CategoriasProcessadas();
-        int totalDeCategorias = 0;
-
-        for (int i = 0; i < pedidos.size(); i++) {
-            Pedido pedidoAtual = pedidos.get(i);
-
-            if (pedidoAtual == null) {
-                break;
-            }
-
-            if (pedidoMaisBarato == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisBarato.getPreco().multiply(new BigDecimal(pedidoMaisBarato.getQuantidade()))) < 0) {
-                pedidoMaisBarato = pedidoAtual;
-            }
-
-            if (pedidoMaisCaro == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade()))) > 0) {
-                pedidoMaisCaro = pedidoAtual;
-            }
-
-            montanteDeVendas = montanteDeVendas.add(pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())));
-            totalDeProdutosVendidos += pedidoAtual.getQuantidade();
-            totalDePedidosRealizados++;
-
-            if (!categoriasProcessadas.contains(pedidoAtual.getCategoria())) {
-              totalDeCategorias++;
-              categoriasProcessadas.add(pedidoAtual.getCategoria());
-            }
-        }
 
         System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
-        System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", totalDePedidosRealizados);
-        System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", totalDeProdutosVendidos);
-        System.out.printf("- TOTAL DE CATEGORIAS: %s\n", totalDeCategorias);
-        System.out.printf("- MONTANTE DE VENDAS: %s\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(montanteDeVendas.setScale(2, RoundingMode.HALF_DOWN)));
-        System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisBarato.getPreco().multiply(new BigDecimal(pedidoMaisBarato.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisBarato.getProduto());
-        System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisCaro.getProduto());
-    }
+        System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", relatorioSintetico.getTotalDePedidosRealizados(listaPedidos));
+        System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", relatorioSintetico.getTotalDeProdutosVendidos(listaPedidos));
+        System.out.printf("- TOTAL DE CATEGORIAS: %s\n", relatorioSintetico.getTotalDeCategorias(listaPedidos));
+        System.out.printf("- MONTANTE DE VENDAS: %s\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(relatorioSintetico.getMontanteDeVendas(listaPedidos).setScale(2, RoundingMode.HALF_DOWN)));
+        System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(relatorioSintetico.getPedidoMaisBarato(listaPedidos).getPreco().multiply(new BigDecimal(relatorioSintetico.getPedidoMaisBarato(listaPedidos).getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), relatorioSintetico.getPedidoMaisBarato(listaPedidos).getProduto());
+        System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(relatorioSintetico.getPedidoMaisCaro(listaPedidos).getPreco().multiply(new BigDecimal(relatorioSintetico.getPedidoMaisCaro(listaPedidos).getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), relatorioSintetico.getPedidoMaisCaro(listaPedidos).getProduto());
+      }
 }
