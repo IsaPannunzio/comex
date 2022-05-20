@@ -11,8 +11,6 @@ public class RelatorioSintetico {
     BigDecimal montanteDeVendas = BigDecimal.ZERO;
     Pedido pedidoMaisBarato;
     Pedido pedidoMaisCaro;
-
-    CategoriasProcessadas categoriasProcessadas = new CategoriasProcessadas();
     int totalDeCategorias = 0;
 
     public RelatorioSintetico(List<Pedido> listaPedidos) {
