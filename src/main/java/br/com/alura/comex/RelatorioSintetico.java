@@ -25,7 +25,7 @@ public class RelatorioSintetico {
     }
 
     public int getTotalDeProdutosVendidos(List<Pedido> listaPedidos) {
-        return totalDeProdutosVendidos = listaPedidos.stream().mapToInt(pedido -> pedido.getQuantidade()).sum();
+        return totalDeProdutosVendidos = listaPedidos.stream().mapToInt(Pedido::getQuantidade).sum();
     }
 
     public int getTotalDePedidosRealizados(List<Pedido> listaPedidos) {
@@ -33,7 +33,7 @@ public class RelatorioSintetico {
     }
 
     public BigDecimal getMontanteDeVendas(List<Pedido> listaPedidos) {
-        return listaPedidos.stream().map(pedido -> pedido.getValorTotal()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return listaPedidos.stream().map(Pedido::getValorTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public Pedido getPedidoMaisBarato(List<Pedido> listaPedidos) {
@@ -45,7 +45,6 @@ public class RelatorioSintetico {
     }
 
     public int getTotalDeCategorias(List<Pedido> listaPedidos) {
-        listaPedidos.forEach(pedido -> categoriasProcessadas.add(pedido.getCategoria()));
-        return categoriasProcessadas.size();
+        return (int) listaPedidos.stream().map(Pedido::getCategoria).distinct().count();
     }
 }
