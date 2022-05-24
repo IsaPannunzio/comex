@@ -25,7 +25,7 @@ public class RelatorioProdutosMaisCaros implements Relatorio {
     @Override
     public void imprimirRelatorio() {
         System.out.println("\n#### RELATÓRIO DE PRODUTO MAIS CARO POR CATEGORIA");
-        produtosMaisCaros.entrySet().stream().sorted(Map.Entry.<String, Pedido>comparingByKey())
+        produtosMaisCaros.entrySet().stream().sorted(Map.Entry.comparingByKey())
                 .forEach(
                         entry -> System.out.println("CATEGORIA: " + entry.getKey() + "\nPRODUTO: "
                                 + entry.getValue().getProduto() + "\nPREÇO: " + NumberFormat

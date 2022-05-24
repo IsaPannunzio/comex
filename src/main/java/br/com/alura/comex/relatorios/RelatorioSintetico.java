@@ -5,11 +5,10 @@ import br.com.alura.comex.Pedido;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
-
 
 public class RelatorioSintetico implements Relatorio {
 
@@ -43,8 +42,7 @@ public class RelatorioSintetico implements Relatorio {
 
     @Override
     public void filtrarRelatorio(List<Pedido> listaAtual) {
-        listaDePedidos = listaAtual.stream()
-                .collect(Collectors.toList());
+        listaDePedidos = new ArrayList<>(listaAtual);
     }
 
     @Override

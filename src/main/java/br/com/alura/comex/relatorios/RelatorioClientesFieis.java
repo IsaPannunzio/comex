@@ -19,8 +19,6 @@ public class RelatorioClientesFieis implements Relatorio {
     @Override
     public void imprimirRelatorio() {
         System.out.println("\n#### RELATÓRIO DE CLIENTES FIÉIS");
-        clientesFieis.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(cliente -> {
-            System.out.println("NOME: " + cliente.getKey() + "\nNº DE PEDIDOS: " + cliente.getValue() + "\n");
-        });
+        clientesFieis.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(cliente -> System.out.println("NOME: " + cliente.getKey() + "\nNº DE PEDIDOS: " + cliente.getValue() + "\n"));
     }
 }

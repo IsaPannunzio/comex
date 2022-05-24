@@ -27,11 +27,9 @@ public class RelatorioProdutosMaisVendidos implements Relatorio {
                 .stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByKey()))
                 .filter(produto -> produto.getKey() > produtosVendidos.size()-3)
-                .forEach(entry -> {
-                    System.out.println(
-                            "PRODUTO: " + entry.getValue().get(0).getProduto()
-                                    + "\nQUANTIDADE: " + entry.getKey()
-                                    + "\n");
-                });
+                .forEach(entry -> System.out.println(
+                        "PRODUTO: " + entry.getValue().get(0).getProduto()
+                                + "\nQUANTIDADE: " + entry.getKey()
+                                + "\n"));
     }
 }

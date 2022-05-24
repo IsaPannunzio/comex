@@ -6,9 +6,7 @@ import java.util.List;
 
 public interface Relatorio {
 
-    public static final List<Pedido> listaDePedidos = null;
+    void filtrarRelatorio(List<Pedido> listaDePedidos);
 
-    public void filtrarRelatorio(List<Pedido> listaDePedidos);
-
-    public void imprimirRelatorio();
+    void imprimirRelatorio();
 }
