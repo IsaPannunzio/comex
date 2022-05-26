@@ -1,6 +1,6 @@
-package br.com.alura.comex.relatorios;
+package br.com.alura.comex.service.relatorios;
 
-import br.com.alura.comex.Pedido;
+import br.com.alura.comex.model.entities.Pedido;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -9,12 +9,16 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class RelatorioVendasPorCategoria implements Relatorio {
+public class RelatorioVendasPorCategoria extends Relatorio {
 
     Map<String, List<Pedido>> vendasPorCategoria;
 
+    public RelatorioVendasPorCategoria(List<Pedido> listaDePedidos) {
+        super(listaDePedidos);
+    }
+
     @Override
-    public void filtrarRelatorio(List<Pedido> listaDePedidos) {
+    public void filtrarRelatorio() {
         vendasPorCategoria = listaDePedidos.stream()
                 .collect(Collectors.groupingBy(Pedido::getCategoria));
     }

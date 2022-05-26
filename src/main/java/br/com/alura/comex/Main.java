@@ -1,35 +1,13 @@
 package br.com.alura.comex;
 
-import br.com.alura.comex.relatorios.*;
-
-import java.util.*;
+import br.com.alura.comex.model.entities.MenuDeRelatorios;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        String pedidosCSV = "pedidos.csv";
-        ProcessadorDeCsv processadorDeCsv = new ProcessadorDeCsv();
-        List<Pedido> listaPedidos = processadorDeCsv.listaPedidos(pedidosCSV);
+        MenuDeRelatorios menuDeRelatorios = new MenuDeRelatorios();
+        menuDeRelatorios.exibirRelatorio();
 
-        Relatorio relatorioSintetico = new RelatorioSintetico();
-        relatorioSintetico.filtrarRelatorio(listaPedidos);
-        relatorioSintetico.imprimirRelatorio();
-
-        Relatorio relatorioClientesFieis = new RelatorioClientesFieis();
-        relatorioClientesFieis.filtrarRelatorio(listaPedidos);
-        relatorioClientesFieis.imprimirRelatorio();
-
-        Relatorio relatorioVendasPorCategoria = new RelatorioVendasPorCategoria();
-        relatorioVendasPorCategoria.filtrarRelatorio(listaPedidos);
-        relatorioVendasPorCategoria.imprimirRelatorio();
-
-        Relatorio relatorioProdutosMaisVendidos = new RelatorioProdutosMaisVendidos();
-        relatorioProdutosMaisVendidos.filtrarRelatorio(listaPedidos);
-        relatorioProdutosMaisVendidos.imprimirRelatorio();
-
-        Relatorio relatorioProdutosMaisCaros = new RelatorioProdutosMaisCaros();
-        relatorioProdutosMaisCaros.filtrarRelatorio(listaPedidos);
-        relatorioProdutosMaisCaros.imprimirRelatorio();
     }
 }

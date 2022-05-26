@@ -1,17 +1,21 @@
-package br.com.alura.comex.relatorios;
+package br.com.alura.comex.service.relatorios;
 
-import br.com.alura.comex.Pedido;
+import br.com.alura.comex.model.entities.Pedido;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class RelatorioClientesFieis implements Relatorio {
+public class RelatorioClientesFieis extends Relatorio {
 
     private Map<String, Long> clientesFieis;
 
+    public RelatorioClientesFieis(List<Pedido> listaDePedidos) {
+        super(listaDePedidos);
+    }
+
     @Override
-    public void filtrarRelatorio(List<Pedido> listaDePedidos) {
+    public void filtrarRelatorio() {
         clientesFieis = listaDePedidos.stream()
                 .collect(Collectors.groupingBy(Pedido::getCliente, Collectors.counting()));
     }

@@ -1,6 +1,6 @@
-package br.com.alura.comex.relatorios;
+package br.com.alura.comex.service.relatorios;
 
-import br.com.alura.comex.Pedido;
+import br.com.alura.comex.model.entities.Pedido;
 
 
 import java.util.Collections;
@@ -8,12 +8,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class RelatorioProdutosMaisVendidos implements Relatorio {
+public class RelatorioProdutosMaisVendidos extends Relatorio {
 
     Map<Integer, List<Pedido>> produtosVendidos;
 
+    public RelatorioProdutosMaisVendidos(List<Pedido> listaDePedidos) {
+        super(listaDePedidos);
+    }
+
     @Override
-    public void filtrarRelatorio(List<Pedido> listaDePedidos) {
+    public void filtrarRelatorio() {
         produtosVendidos = listaDePedidos.stream()
                 .collect(Collectors.groupingBy(Pedido::getQuantidade));
     }
