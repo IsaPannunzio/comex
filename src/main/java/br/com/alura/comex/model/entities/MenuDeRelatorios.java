@@ -3,9 +3,6 @@ package br.com.alura.comex.model.entities;
 import br.com.alura.comex.model.enums.TipoProcessador;
 import br.com.alura.comex.model.enums.TipoRelatorio;
 import br.com.alura.comex.service.processadores.Processador;
-import br.com.alura.comex.service.processadores.ProcessadorDeCSV;
-import br.com.alura.comex.service.processadores.ProcessadorDeJSON;
-import br.com.alura.comex.service.processadores.ProcessadorDeXML;
 import br.com.alura.comex.service.relatorios.*;
 
 import java.util.List;
@@ -36,32 +33,19 @@ public class MenuDeRelatorios {
         imprimirOpcoesProcessador();
         System.out.print("Digite: ");
         String opcao = entrada.nextLine();
-        TipoProcessador processador = TipoProcessador.valueOf(opcao);
-
-        return switch (processador) {
-            case CSV -> ((Processador) new ProcessadorDeCSV()).imprimir();
-            case JSON -> ((Processador) new ProcessadorDeJSON()).imprimir();
-            case XML -> ((Processador) new ProcessadorDeXML()).imprimir();
-        };
+        TipoProcessador tipoProcessador = TipoProcessador.valueOf(opcao);
+        Processador processador = tipoProcessador.getProcessador();
+        return processador.imprimir();
     }
-    
+
     private void relatorio(List<Pedido> listaDePedidos) {
         imprimirOpcoesRelatorio();
         System.out.print("Digite: ");
         String opcao = entrada.nextLine();
-        TipoRelatorio relatorio = TipoRelatorio.valueOf(opcao);
-
-        switch (relatorio) {
-            case UM -> new RelatorioSintetico(listaDePedidos).exibir();
-            case DOIS -> new RelatorioClientesFieis(listaDePedidos).exibir();
-            case TRES -> new RelatorioVendasPorCategoria(listaDePedidos).exibir();
-            case QUATRO -> new RelatorioProdutosMaisVendidos(listaDePedidos).exibir();
-            case CINCO -> new RelatorioProdutosMaisCaros(listaDePedidos).exibir();
-        }
+        TipoRelatorio tipoRelatorio = TipoRelatorio.valueOf(opcao);
+        Relatorio relatorio = tipoRelatorio.getRelatorio(listaDePedidos);
+        relatorio.exibir();
     }
-
-
-
 
     public void exibirRelatorio() throws Exception {
         List<Pedido> listaDePedidos = arquivo();
