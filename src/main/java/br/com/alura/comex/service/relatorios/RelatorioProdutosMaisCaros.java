@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class RelatorioProdutosMaisCaros extends Relatorio {
 
-    Map<String, Pedido> produtosMaisCaros;
+    private Map<String, Pedido> produtosMaisCaros;
 
     public RelatorioProdutosMaisCaros(List<Pedido> listaDePedidos) {
         super(listaDePedidos);
@@ -21,7 +21,7 @@ public class RelatorioProdutosMaisCaros extends Relatorio {
 
     @Override
     public void filtrarRelatorio() {
-        produtosMaisCaros = listaDePedidos.stream().collect(Collectors.toMap(Pedido::getCategoria, Function.identity(),
+        produtosMaisCaros = getListaDePedidos().stream().collect(Collectors.toMap(Pedido::getCategoria, Function.identity(),
                 BinaryOperator.maxBy(Comparator.comparing(Pedido::getPreco))));
 
     }

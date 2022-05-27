@@ -7,7 +7,7 @@ import br.com.alura.comex.service.processadores.ProcessadorDeXML;
 
 public enum TipoProcessador {
 
-    CSV(new ProcessadorDeCSV()), JSON(new ProcessadorDeJSON()), XML(new ProcessadorDeXML());
+    A(new ProcessadorDeCSV()), B(new ProcessadorDeJSON()), C(new ProcessadorDeXML());
 
     private final Processador processador;
     TipoProcessador(Processador processador) {

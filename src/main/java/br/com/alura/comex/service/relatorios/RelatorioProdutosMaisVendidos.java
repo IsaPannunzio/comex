@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class RelatorioProdutosMaisVendidos extends Relatorio {
 
-    Map<Integer, List<Pedido>> produtosVendidos;
+    private Map<Integer, List<Pedido>> produtosVendidos;
 
     public RelatorioProdutosMaisVendidos(List<Pedido> listaDePedidos) {
         super(listaDePedidos);
@@ -18,7 +18,7 @@ public class RelatorioProdutosMaisVendidos extends Relatorio {
 
     @Override
     public void filtrarRelatorio() {
-        produtosVendidos = listaDePedidos.stream()
+        produtosVendidos = getListaDePedidos().stream()
                 .collect(Collectors.groupingBy(Pedido::getQuantidade));
     }
 

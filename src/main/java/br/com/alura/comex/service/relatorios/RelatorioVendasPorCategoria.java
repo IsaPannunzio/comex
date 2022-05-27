@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class RelatorioVendasPorCategoria extends Relatorio {
 
-    Map<String, List<Pedido>> vendasPorCategoria;
+    private Map<String, List<Pedido>> vendasPorCategoria;
 
     public RelatorioVendasPorCategoria(List<Pedido> listaDePedidos) {
         super(listaDePedidos);
@@ -19,7 +19,7 @@ public class RelatorioVendasPorCategoria extends Relatorio {
 
     @Override
     public void filtrarRelatorio() {
-        vendasPorCategoria = listaDePedidos.stream()
+        vendasPorCategoria = getListaDePedidos().stream()
                 .collect(Collectors.groupingBy(Pedido::getCategoria));
     }
 

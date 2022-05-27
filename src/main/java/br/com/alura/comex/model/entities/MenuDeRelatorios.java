@@ -13,20 +13,20 @@ public class MenuDeRelatorios {
     Scanner entrada = new Scanner(System.in);
 
     private void imprimirOpcoesProcessador() {
-        System.out.println("----BEM VINDO----");
-        System.out.println("Digite a opção do tipo de arquivo que deseja processar em letras maiúsculas");
-        System.out.println("CSV");
-        System.out.println("JSON");
-        System.out.println("XML");
+        System.out.println("BEM VINDO!");
+        System.out.println("Qual tipo de arquivo deseja processar?");
+        System.out.println("'A' - CSV");
+        System.out.println("'B' - JSON");
+        System.out.println("'C' - XML");
     }
 
     private void imprimirOpcoesRelatorio() {
         System.out.println("\nQual relatório deseja imprimir?");
-        System.out.println("'UM' - Relatório sintético");
-        System.out.println("'DOIS' - Relatório de clientes fiéis");
-        System.out.println("'TRÊS' - Relatório de vendas por categoria");
-        System.out.println("'QUATRO' - Relatório de produtos mais vendidos");
-        System.out.println("'CINCO' - Relatório de produtos mais caros em cada categoria");
+        System.out.println("'A' - Relatório sintético");
+        System.out.println("'B' - Relatório de clientes fiéis");
+        System.out.println("'C' - Relatório de vendas por categoria");
+        System.out.println("'D' - Relatório de produtos mais vendidos");
+        System.out.println("'E' - Relatório de produtos mais caros em cada categoria");
     }
 
     private List<Pedido> arquivo() throws Exception {
@@ -35,7 +35,7 @@ public class MenuDeRelatorios {
         String opcao = entrada.nextLine();
         TipoProcessador tipoProcessador = TipoProcessador.valueOf(opcao);
         Processador processador = tipoProcessador.getProcessador();
-        return processador.imprimir();
+        return processador.lerArquivos();
     }
 
     private void relatorio(List<Pedido> listaDePedidos) {

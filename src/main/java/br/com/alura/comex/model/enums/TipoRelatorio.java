@@ -9,11 +9,11 @@ import java.util.function.Function;
 public enum TipoRelatorio {
 
 
-    UM(RelatorioSintetico::new),
-    DOIS(RelatorioClientesFieis::new),
-    TRES(RelatorioVendasPorCategoria::new),
-    QUATRO(RelatorioProdutosMaisVendidos::new),
-    CINCO(RelatorioProdutosMaisCaros::new);
+    A(RelatorioSintetico::new),
+    B(RelatorioClientesFieis::new),
+    C(RelatorioVendasPorCategoria::new),
+    D(RelatorioProdutosMaisVendidos::new),
+    E(RelatorioProdutosMaisCaros::new);
 
     private final Function<List<Pedido>,Relatorio> relatorioSupplier;
 

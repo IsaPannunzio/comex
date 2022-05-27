@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class ProcessadorDeXML extends ProcessadorJackson {
 
-    static final String arquivoXML = "pedidos.xml";
+    private static final String arquivoXML = "pedidos.xml";
 
     @Override
     public ObjectMapper getMapper() {

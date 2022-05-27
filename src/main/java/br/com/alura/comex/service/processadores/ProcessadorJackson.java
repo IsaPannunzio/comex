@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class ProcessadorJackson implements Processador {
 
     @Override
-    public List<Pedido> imprimir() throws URISyntaxException, IOException {
+    public List<Pedido> lerArquivos() throws URISyntaxException, IOException {
         URL recurso = ClassLoader.getSystemResource(getNomeArquivo());
         FileReader reader = new FileReader(recurso.toURI().getPath());
         ObjectMapper objectMapper = getMapper();

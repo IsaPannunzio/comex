@@ -16,7 +16,7 @@ public class RelatorioClientesFieis extends Relatorio {
 
     @Override
     public void filtrarRelatorio() {
-        clientesFieis = listaDePedidos.stream()
+        clientesFieis = getListaDePedidos().stream()
                 .collect(Collectors.groupingBy(Pedido::getCliente, Collectors.counting()));
     }
 

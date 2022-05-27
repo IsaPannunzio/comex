@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Processador {
 
-    List<Pedido> imprimir() throws Exception;
+    List<Pedido> lerArquivos() throws Exception;
 }

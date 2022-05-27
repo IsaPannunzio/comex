@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ProcessadorDeJSON extends ProcessadorJackson{
 
-    static final String arquivoJSON = "pedidos.json";
+    private static final String arquivoJSON = "pedidos.json";
 
     @Override
     public ObjectMapper getMapper() {

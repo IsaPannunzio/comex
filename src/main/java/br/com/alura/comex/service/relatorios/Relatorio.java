@@ -3,20 +3,19 @@ package br.com.alura.comex.service.relatorios;
 import br.com.alura.comex.model.entities.Pedido;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public abstract class Relatorio {
 
-    List<Pedido> listaDePedidos = new ArrayList<>();
+    private final List<Pedido> listaDePedidos;
 
     public Relatorio(List<Pedido> listaDePedidos) {
         this.listaDePedidos = listaDePedidos;
     }
 
     public int getTotalDeProdutosVendidos() {
-        return listaDePedidos.stream().mapToInt(pedido -> pedido.getQuantidade()).sum();
+        return listaDePedidos.stream().mapToInt(Pedido::getQuantidade).sum();
     }
 
     public int getTotalDePedidosRealizados() {
@@ -37,6 +36,10 @@ public abstract class Relatorio {
 
     public int getTotalDeCategorias() {
         return (int) listaDePedidos.stream().map(Pedido::getCategoria).distinct().count();
+    }
+
+    public List<Pedido> getListaDePedidos() {
+        return listaDePedidos;
     }
 
     public abstract void filtrarRelatorio();
