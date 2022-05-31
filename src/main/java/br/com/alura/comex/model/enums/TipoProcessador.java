@@ -10,9 +10,11 @@ public enum TipoProcessador {
     A(new ProcessadorDeCSV()), B(new ProcessadorDeJSON()), C(new ProcessadorDeXML());
 
     private final Processador processador;
+
     TipoProcessador(Processador processador) {
         this.processador = processador;
     }
+
     public Processador getProcessador() {
         return processador;
     }

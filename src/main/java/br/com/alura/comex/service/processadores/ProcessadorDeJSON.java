@@ -2,7 +2,7 @@ package br.com.alura.comex.service.processadores;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ProcessadorDeJSON extends ProcessadorJackson{
+public class ProcessadorDeJSON extends ProcessadorJackson {
 
     private static final String arquivoJSON = "pedidos.json";
 

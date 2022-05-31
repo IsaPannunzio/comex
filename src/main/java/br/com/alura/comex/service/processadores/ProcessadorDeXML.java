@@ -11,6 +11,7 @@ public class ProcessadorDeXML extends ProcessadorJackson {
     public ObjectMapper getMapper() {
         return new XmlMapper();
     }
+
     @Override
     public String getNomeArquivo() {
         return arquivoXML;

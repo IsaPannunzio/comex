@@ -15,9 +15,9 @@ public enum TipoRelatorio {
     D(RelatorioProdutosMaisVendidos::new),
     E(RelatorioProdutosMaisCaros::new);
 
-    private final Function<List<Pedido>,Relatorio> relatorioSupplier;
+    private final Function<List<Pedido>, Relatorio> relatorioSupplier;
 
-    TipoRelatorio(Function<List<Pedido>,Relatorio> relatorioSupplier) {
+    TipoRelatorio(Function<List<Pedido>, Relatorio> relatorioSupplier) {
         this.relatorioSupplier = relatorioSupplier;
     }
 

@@ -1,5 +1,6 @@
 package br.com.alura.comex.service.relatorios;
 
+import br.com.alura.comex.builder.PedidoBuilder;
 import br.com.alura.comex.model.entities.Pedido;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,15 +12,22 @@ class RelatorioProdutosMaisVendidosTest {
 
     @Test
     void listaNullRetornaIllegalArgumentException() {
-        List<Pedido> pedidoVazio = null;
-        RelatorioProdutosMaisCaros relatorio = new RelatorioProdutosMaisCaros(null);
+        List<Pedido> pedidoNulo = null;
+        RelatorioProdutosMaisVendidos relatorio = new RelatorioProdutosMaisVendidos(null);
         Assertions.assertThrows(IllegalArgumentException.class, relatorio::exibir);
     }
 
     @Test
     void listaVaziaRetornaIllegalArgumentException() {
         List<Pedido> pedidoVazio = Collections.emptyList();
-        RelatorioProdutosMaisCaros relatorio = new RelatorioProdutosMaisCaros(pedidoVazio);
+        RelatorioProdutosMaisVendidos relatorio = new RelatorioProdutosMaisVendidos(pedidoVazio);
         Assertions.assertThrows(IllegalArgumentException.class, relatorio::exibir);
+    }
+
+    @Test
+    void relatorioListaComUmUnicoPedido() {
+        Pedido pedidoUnico = PedidoBuilder.getPrimeiroPedido();
+        RelatorioProdutosMaisVendidos relatorio = new RelatorioProdutosMaisVendidos(Collections.singletonList(pedidoUnico));
+        Assertions.assertAll(relatorio::exibir);
     }
 }

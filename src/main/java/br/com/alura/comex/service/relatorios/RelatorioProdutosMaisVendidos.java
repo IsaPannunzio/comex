@@ -30,7 +30,7 @@ public class RelatorioProdutosMaisVendidos extends Relatorio {
                 .entrySet()
                 .stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByKey()))
-                .filter(produto -> produto.getKey() > produtosVendidos.size()-3)
+                .filter(produto -> produto.getKey() > produtosVendidos.size() - 3)
                 .forEach(entry -> System.out.println(
                         "PRODUTO: " + entry.getValue().get(0).getProduto()
                                 + "\nQUANTIDADE: " + entry.getKey()
