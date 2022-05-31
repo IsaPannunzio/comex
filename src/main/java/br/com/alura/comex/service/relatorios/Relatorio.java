@@ -47,6 +47,9 @@ public abstract class Relatorio {
     public abstract void imprimirRelatorio();
 
     public void exibir() {
+        if (listaDePedidos == null || listaDePedidos.isEmpty()) {
+            throw new IllegalArgumentException("A lista de pedidos está vazia");
+        }
         filtrarRelatorio();
         imprimirRelatorio();
     }

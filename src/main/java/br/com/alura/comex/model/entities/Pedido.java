@@ -11,7 +11,6 @@ public class Pedido {
     private String categoria;
     private String produto;
     private String cliente;
-
     private BigDecimal preco;
     private int quantidade;
 
@@ -48,6 +47,30 @@ public class Pedido {
 
     public int getQuantidade() {
         return quantidade;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setProduto(String produto) {
+        this.produto = produto;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     @Override
