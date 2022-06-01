@@ -5,6 +5,7 @@ import br.com.alura.comex.model.entities.Pedido;
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Relatorio {
 
@@ -40,6 +41,12 @@ public abstract class Relatorio {
 
     public List<Pedido> getListaDePedidos() {
         return listaDePedidos;
+    }
+
+    public Long quantosClientes(String nome) {
+        return getListaDePedidos().stream()
+                .collect(Collectors.groupingBy(Pedido::getCliente, Collectors.counting()))
+                .get(nome);
     }
 
     public abstract void filtrarRelatorio();

@@ -12,7 +12,6 @@ class RelatorioProdutosMaisCarosTest {
 
     @Test
     void listaNullRetornaIllegalArgumentException() {
-        List<Pedido> pedidoNulo = null;
         RelatorioProdutosMaisCaros relatorio = new RelatorioProdutosMaisCaros(null);
         Assertions.assertThrows(IllegalArgumentException.class, relatorio::exibir);
     }
@@ -26,8 +25,19 @@ class RelatorioProdutosMaisCarosTest {
 
     @Test
     void relatorioListaComUmUnicoPedido() {
-        Pedido pedidoUnico = PedidoBuilder.getPrimeiroPedido();
+        Pedido pedidoUnico = PedidoBuilder.getPedidoUnico();
         RelatorioProdutosMaisCaros relatorio = new RelatorioProdutosMaisCaros(Collections.singletonList(pedidoUnico));
-        Assertions.assertAll(relatorio::exibir);
+        String nomeCliente = "Cliente Teste";
+        Long expected = 1L;
+        Assertions.assertEquals(expected, relatorio.quantosClientes(nomeCliente));
+    }
+
+    @Test
+    void relatorioListadeTresPedidosDoMesmoCliente() {
+        List<Pedido> listaPedidos = PedidoBuilder.getListaDePedidos();
+        RelatorioProdutosMaisCaros relatorio = new RelatorioProdutosMaisCaros(listaPedidos);
+        String nomeCliente = "Cliente um";
+        Long expected = 3L;
+        Assertions.assertEquals(expected, relatorio.quantosClientes(nomeCliente));
     }
 }

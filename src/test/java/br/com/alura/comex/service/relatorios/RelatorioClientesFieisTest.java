@@ -8,12 +8,10 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.List;
 
-
 class RelatorioClientesFieisTest {
 
     @Test
     void listaNullRetornaIllegalArgumentException() {
-        List<Pedido> pedidoNulo = null;
         RelatorioClientesFieis relatorio = new RelatorioClientesFieis(null);
         Assertions.assertThrows(IllegalArgumentException.class, relatorio::exibir);
     }
@@ -27,8 +25,20 @@ class RelatorioClientesFieisTest {
 
     @Test
     void relatorioListaComUmUnicoPedido() {
-        Pedido pedidoUnico = PedidoBuilder.getPrimeiroPedido();
+        Pedido pedidoUnico = PedidoBuilder.getPedidoUnico();
         RelatorioClientesFieis relatorio = new RelatorioClientesFieis(Collections.singletonList(pedidoUnico));
-        Assertions.assertAll(relatorio::exibir);
+        String nomeCliente = "Cliente Teste";
+        Long expected = 1L;
+        Assertions.assertEquals(expected, relatorio.quantosClientes(nomeCliente));
+    }
+
+    @Test
+    void relatorioListadeTresPedidosDoMesmoCliente() {
+        List<Pedido> listaPedidos = PedidoBuilder.getListaDePedidos();
+        RelatorioClientesFieis relatorio = new RelatorioClientesFieis(listaPedidos);
+        String nomeCliente = "Cliente um";
+        Long expected = 3L;
+        Assertions.assertEquals(expected, relatorio.quantosClientes(nomeCliente));
     }
 }
+
