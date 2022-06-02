@@ -13,7 +13,8 @@ public enum TipoRelatorio {
     B(RelatorioClientesFieis::new),
     C(RelatorioVendasPorCategoria::new),
     D(RelatorioProdutosMaisVendidos::new),
-    E(RelatorioProdutosMaisCaros::new);
+    E(RelatorioProdutosMaisCaros::new),
+    F(RelatorioClientesMaisLucrativos::new);
 
     private final Function<List<Pedido>, Relatorio> relatorioSupplier;
 

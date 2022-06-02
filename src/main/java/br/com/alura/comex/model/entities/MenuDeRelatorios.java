@@ -27,6 +27,7 @@ public class MenuDeRelatorios {
         System.out.println("'C' - Relatório de vendas por categoria");
         System.out.println("'D' - Relatório de produtos mais vendidos");
         System.out.println("'E' - Relatório de produtos mais caros em cada categoria");
+        System.out.println("'F' - Relatório de clientes mais lucrativos");
     }
 
     private List<Pedido> arquivo() throws Exception {

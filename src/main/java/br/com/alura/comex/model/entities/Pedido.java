@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-
 public class Pedido {
 
     private String categoria;
@@ -88,5 +87,4 @@ public class Pedido {
     public BigDecimal getValorTotal() {
         return getPreco().multiply(new BigDecimal(getQuantidade()));
     }
-
 }

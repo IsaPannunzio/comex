@@ -5,11 +5,12 @@ import br.com.alura.comex.model.entities.Pedido;
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public abstract class Relatorio {
 
-    private final List<Pedido> listaDePedidos;
+    List<Pedido> listaDePedidos;
 
     public Relatorio(List<Pedido> listaDePedidos) {
         this.listaDePedidos = listaDePedidos;
@@ -47,6 +48,11 @@ public abstract class Relatorio {
         return getListaDePedidos().stream()
                 .collect(Collectors.groupingBy(Pedido::getCliente, Collectors.counting()))
                 .get(nome);
+    }
+
+    public BigDecimal getMontanteCliente(Map.Entry<String, List<Pedido>> cliente) {
+        return cliente.getValue().stream().map(Pedido::getValorTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public abstract void filtrarRelatorio();
