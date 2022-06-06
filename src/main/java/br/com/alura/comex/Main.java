@@ -1,5 +1,7 @@
 package br.com.alura.comex;
 
+import br.com.alura.comex.model.entities.Pedido;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
