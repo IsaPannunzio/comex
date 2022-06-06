@@ -12,6 +12,7 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     public int getId() {
@@ -29,7 +30,6 @@ public class Categoria {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public Status getStatus() {
         return status;
     }

@@ -11,22 +11,23 @@ public class ItemDePedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private BigDecimal precoUnitario;
-    private long quantidade;
+    private Long quantidade;
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
     @ManyToOne
     private Pedido pedido;
     private BigDecimal desconto;
+    @Enumerated(EnumType.STRING)
     private TipoDesconto tipoDesconto;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,13 +62,15 @@ public class ItemDePedido {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
-
     public BigDecimal getDesconto() {
         return desconto;
     }
 
     public void setDesconto(BigDecimal desconto) {
         this.desconto = desconto;
+    }
+    public void setQuantidade(Long quantidade) {
+        this.quantidade = quantidade;
     }
 
     public TipoDesconto getTipoDesconto() {
@@ -78,14 +81,14 @@ public class ItemDePedido {
         this.tipoDesconto = tipoDesconto;
     }
 
-    public ItemDePedido(int id, BigDecimal precoUnitario, long quantidade, Produto produto, Pedido pedido, BigDecimal desconto, TipoDesconto tipoDesconto) {
+    public ItemDePedido(Long id, BigDecimal precoUnitario, long quantidade, Produto produto, Pedido pedido, TipoDesconto tipoDesconto, BigDecimal desconto) {
         this.id = id;
         this.precoUnitario = precoUnitario;
         this.quantidade = quantidade;
         this.produto = produto;
         this.pedido = pedido;
-        this.desconto = desconto;
         this.tipoDesconto = tipoDesconto;
+        this.desconto = desconto;
     }
 
     public ItemDePedido() {
