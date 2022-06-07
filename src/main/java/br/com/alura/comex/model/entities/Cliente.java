@@ -1,6 +1,7 @@
 package br.com.alura.comex.model.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -18,6 +19,9 @@ public class Cliente {
     private String bairro;
     private String cidade;
     private String estado;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> listaDePedidos;
 
     public int getId() {
         return id;
@@ -99,6 +103,14 @@ public class Cliente {
         this.estado = estado;
     }
 
+    public List<Pedido> getListaDePedidos() {
+        return listaDePedidos;
+    }
+
+    public void setListaDePedidos(List<Pedido> listaDePedidos) {
+        this.listaDePedidos = listaDePedidos;
+    }
+
     public Cliente(int id, String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado) {
         this.id = id;
         this.nome = nome;
@@ -113,5 +125,9 @@ public class Cliente {
     }
 
     public Cliente() {
+    }
+
+    public Cliente(List<Pedido> listaDePedidos) {
+        this.listaDePedidos = listaDePedidos;
     }
 }

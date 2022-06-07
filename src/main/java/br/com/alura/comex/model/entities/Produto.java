@@ -2,6 +2,7 @@ package br.com.alura.comex.model.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "produtos")
@@ -13,7 +14,7 @@ public class Produto {
     private String nome;
     private String descricao;
     private BigDecimal precoUnitario;
-    private long quantidadeEmEstoque;
+    private Long quantidadeEmEstoque;
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
@@ -66,7 +67,11 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public Produto(int id, String nome, String descricao, BigDecimal precoUnitario, long quantidadeEmEstoque, Categoria categoria) {
+    public void setQuantidadeEmEstoque(Long quantidadeEmEstoque) {
+        this.quantidadeEmEstoque = quantidadeEmEstoque;
+    }
+
+    public Produto(int id, String nome, String descricao, BigDecimal precoUnitario, Long quantidadeEmEstoque, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;

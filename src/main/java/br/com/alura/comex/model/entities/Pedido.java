@@ -5,6 +5,7 @@ import br.com.alura.comex.model.enums.TipoDesconto;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
@@ -25,6 +26,9 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private TipoDesconto tipoDesconto;
     private LocalDate data;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<ItemDePedido> listaDePedidos;
 
     public Long getId() {
         return id;
@@ -86,6 +90,14 @@ public class Pedido {
         this.tipoDesconto = tipoDesconto;
     }
 
+    public List<ItemDePedido> getListaDePedidos() {
+        return listaDePedidos;
+    }
+
+    public void setListaDePedidos(List<ItemDePedido> listaDePedidos) {
+        this.listaDePedidos = listaDePedidos;
+    }
+
     public Pedido(Long id, String cliente, BigDecimal preco, int quantidade, TipoDesconto tipoDesconto, LocalDate data) {
         this.id = id;
         this.cliente = cliente;
@@ -100,9 +112,9 @@ public class Pedido {
 
     public void setData(LocalDate data) {
         this.data = data;
+    }
 
-
-
-
+    public Pedido(List<ItemDePedido> listaDePedidos) {
+        this.listaDePedidos = listaDePedidos;
     }
 }

@@ -18,6 +18,7 @@ public class ItemDePedido {
     @JoinColumn(name = "produto_id")
     private Produto produto;
     @ManyToOne
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
     private BigDecimal desconto;
     @Enumerated(EnumType.STRING)
