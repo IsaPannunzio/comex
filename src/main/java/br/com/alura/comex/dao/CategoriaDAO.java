@@ -28,11 +28,11 @@ public class CategoriaDAO {
 
     public List<Categoria> listarTodas() {
         String queryJPQL = "SELECT categoria FROM Categoria categoria";
-        return em.createQuery(queryJPQL).getResultList();
+        return em.createQuery(queryJPQL, Categoria.class).getResultList();
     }
 
     public List<Categoria> listarInativas() {
         String queryJPQL = "SELECT categoria FROM Categoria categoria WHERE categoria.status = :status";
-        return em.createQuery(queryJPQL).setParameter("status", Status.INATIVA).getResultList();
+        return em.createQuery(queryJPQL, Categoria.class).setParameter("status", Status.INATIVA).getResultList();
     }
 }

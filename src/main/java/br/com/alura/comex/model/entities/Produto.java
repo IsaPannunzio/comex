@@ -12,18 +12,22 @@ public class Produto {
     private Long id;
     private String nome;
     private String descricao;
-    private BigDecimal precoUnitario;
+    private BigDecimal precoUnitario = BigDecimal.ZERO;
     private int quantidadeEmEstoque;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    public Long getId() {
-        return id;
+    public Produto(String nome, String descricao, BigDecimal precoUnitario, int quantidadeEmEstoque, Categoria categoria) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.precoUnitario = precoUnitario;
+        this.quantidadeEmEstoque = quantidadeEmEstoque;
+        this.categoria = categoria;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Produto() {
+
     }
 
     public String getNome() {
@@ -50,14 +54,6 @@ public class Produto {
         this.precoUnitario = precoUnitario;
     }
 
-    public long getQuantidadeEmEstoque() {
-        return quantidadeEmEstoque;
-    }
-
-    public void setQuantidadeEmEstoque(int quantidadeEmEstoque) {
-        this.quantidadeEmEstoque = quantidadeEmEstoque;
-    }
-
     public Categoria getCategoria() {
         return categoria;
     }
@@ -66,15 +62,12 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public Produto(String nome, String descricao, BigDecimal precoUnitario, int quantidadeEmEstoque, Categoria categoria) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.precoUnitario = precoUnitario;
+    public int getQuantidadeEmEstoque() {
+        return quantidadeEmEstoque;
+    }
+
+    public void setQuantidadeEmEstoque(int quantidadeEmEstoque) {
         this.quantidadeEmEstoque = quantidadeEmEstoque;
-        this.categoria = categoria;
     }
 
-    public Produto() {
-    }
 }
-

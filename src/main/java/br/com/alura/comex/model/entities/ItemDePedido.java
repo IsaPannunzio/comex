@@ -1,5 +1,6 @@
 package br.com.alura.comex.model.entities;
 
+
 import br.com.alura.comex.model.enums.TipoDesconto;
 
 import javax.persistence.*;
@@ -12,39 +13,42 @@ public class ItemDePedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private BigDecimal precoUnitario;
-    private Long quantidade;
-    @ManyToOne
+    private BigDecimal precoUnitario = BigDecimal.ZERO;
+    private int quantidade;
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "produto_id")
     private Produto produto;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
     private BigDecimal desconto;
-    @Enumerated(EnumType.STRING)
     private TipoDesconto tipoDesconto;
 
-    public Long getId() {
-        return id;
+    public ItemDePedido(int quantidade, Produto produto, Pedido pedido, BigDecimal desconto, TipoDesconto tipoDeDesconto) {
+        this.quantidade = quantidade;
+        this.produto = produto;
+        this.pedido = pedido;
+        this.precoUnitario = produto.getPrecoUnitario();
+        this.desconto = desconto;
+        this.tipoDesconto = tipoDesconto;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public ItemDePedido(int quantidade, Produto produto, Pedido pedido) {
+        this.quantidade = quantidade;
+        this.produto = produto;
+        this.pedido = pedido;
+        this.precoUnitario = produto.getPrecoUnitario();
     }
 
-    public BigDecimal getPrecoUnitario() {
-        return precoUnitario;
+    public ItemDePedido() {
+
     }
 
-    public void setPrecoUnitario(BigDecimal precoUnitario) {
-        this.precoUnitario = precoUnitario;
-    }
-
-    public long getQuantidade() {
+    public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(long quantidade) {
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -63,6 +67,7 @@ public class ItemDePedido {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
     public BigDecimal getDesconto() {
         return desconto;
     }
@@ -70,27 +75,16 @@ public class ItemDePedido {
     public void setDesconto(BigDecimal desconto) {
         this.desconto = desconto;
     }
-    public void setQuantidade(Long quantidade) {
-        this.quantidade = quantidade;
-    }
 
-    public TipoDesconto getTipoDesconto() {
+    public TipoDesconto getTipoDeDesconto() {
         return tipoDesconto;
     }
 
-    public void setTipoDesconto(TipoDesconto tipoDesconto) {
-        this.tipoDesconto = tipoDesconto;
+    public void setTipoDeDesconto(TipoDesconto tipoDeDesconto) {
+        this.tipoDesconto= tipoDeDesconto;
     }
 
-    public ItemDePedido(BigDecimal precoUnitario, long quantidade, Produto produto, Pedido pedido, TipoDesconto tipoDesconto, BigDecimal desconto) {
-        this.precoUnitario = precoUnitario;
-        this.quantidade = quantidade;
-        this.produto = produto;
-        this.pedido = pedido;
-        this.tipoDesconto = tipoDesconto;
-        this.desconto = desconto;
-    }
-
-    public ItemDePedido() {
+    public BigDecimal getValor() {
+        return precoUnitario.multiply(new BigDecimal(quantidade));
     }
 }

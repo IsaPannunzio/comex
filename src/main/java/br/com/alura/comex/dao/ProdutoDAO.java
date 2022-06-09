@@ -17,13 +17,18 @@ public class ProdutoDAO {
         this.em.persist(produto);
     }
 
+    public Produto buscarPorId(Long id) {
+        return em.find(Produto.class, id);
+
+    }
+
     public List<Produto> listarTodos() {
         String queryJPQL = "SELECT produto FROM Produto produto";
-        return em.createQuery(queryJPQL).getResultList();
+        return em.createQuery(queryJPQL, Produto.class).getResultList();
     }
 
     public List<Produto> listarIndisponiveis() {
         String queryJPQL = "SELECT produto FROM Produto produto WHERE produto.quantidade = :quantidade";
-        return em.createQuery(queryJPQL).setParameter("quantidade", 0).getResultList();
+        return em.createQuery(queryJPQL, Produto.class).setParameter("quantidade", 0).getResultList();
     }
 }

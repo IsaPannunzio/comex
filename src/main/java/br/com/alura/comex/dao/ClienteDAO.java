@@ -13,7 +13,7 @@ public class ClienteDAO {
         this.em = em;
     }
 
-    public Cliente buscarPorId(int id) {
+    public Cliente buscarPorId(long id) {
         return em.find(Cliente.class, id);
     }
 
@@ -32,11 +32,11 @@ public class ClienteDAO {
 
     public List<Cliente> listarTodos() {
         String queryJPQL = "SELECT cliente FROM Cliente cliente";
-        return em.createQuery(queryJPQL).getResultList();
+        return em.createQuery(queryJPQL, Cliente.class).getResultList();
     }
 
     public List<Cliente> listarPorNome(String nome) {
         String queryJPQL = "SELECT cliente FROM Cliente cliente WHERE cliente.nome = :nome";
-        return em.createQuery(queryJPQL).setParameter("nome", nome).getResultList();
+        return em.createQuery(queryJPQL, Cliente.class).setParameter("nome", nome).getResultList();
     }
 }
