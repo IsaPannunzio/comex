@@ -10,16 +10,16 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String nome;
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,8 +37,7 @@ public class Categoria {
         this.status = status;
     }
 
-    public Categoria(int id, String nome, Status status) {
-        this.id = id;
+    public Categoria(String nome, Status status) {
         this.nome = nome;
         this.status = status;
     }

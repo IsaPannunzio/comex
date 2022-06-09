@@ -9,7 +9,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String nome;
     private String cpf;
     private String telefone;
@@ -23,11 +23,11 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> listaDePedidos;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -111,8 +111,7 @@ public class Cliente {
         this.listaDePedidos = listaDePedidos;
     }
 
-    public Cliente(int id, String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado) {
-        this.id = id;
+    public Cliente(String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;

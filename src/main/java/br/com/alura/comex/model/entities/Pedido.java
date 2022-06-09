@@ -98,8 +98,7 @@ public class Pedido {
         this.listaDePedidos = listaDePedidos;
     }
 
-    public Pedido(Long id, String cliente, BigDecimal preco, int quantidade, TipoDesconto tipoDesconto, LocalDate data) {
-        this.id = id;
+    public Pedido(String cliente, BigDecimal preco, int quantidade, TipoDesconto tipoDesconto, LocalDate data) {
         this.cliente = cliente;
         this.preco = preco;
         this.quantidade = quantidade;
