@@ -125,8 +125,4 @@ public class Cliente {
 
     public Cliente() {
     }
-
-    public Cliente(List<Pedido> listaDePedidos) {
-        this.listaDePedidos = listaDePedidos;
-    }
 }

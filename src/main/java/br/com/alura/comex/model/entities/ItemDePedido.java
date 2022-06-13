@@ -33,13 +33,6 @@ public class ItemDePedido {
         this.tipoDesconto = tipoDesconto;
     }
 
-    public ItemDePedido(int quantidade, Produto produto, Pedido pedido) {
-        this.quantidade = quantidade;
-        this.produto = produto;
-        this.pedido = pedido;
-        this.precoUnitario = produto.getPrecoUnitario();
-    }
-
     public ItemDePedido() {
 
     }

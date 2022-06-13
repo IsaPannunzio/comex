@@ -34,6 +34,14 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemDePedido> listaDePedidos;
 
+    public Pedido(String cliente, BigDecimal preco, int quantidade, TipoDesconto tipoDesconto, LocalDate data) {
+        this.cliente = cliente;
+        this.preco = preco;
+        this.quantidade = quantidade;
+        this.tipoDesconto = tipoDesconto;
+        this.data = data;
+    }
+
     public Pedido() {
     }
 
@@ -104,32 +112,8 @@ public class Pedido {
         this.listaDePedidos = listaDePedidos;
     }
 
-    public List<ItemDePedido> getItens() {
-        return itens;
-    }
-
-    public void adicionarItem(ItemDePedido item) {
-        item.setPedido(this);
-        this.itens.add(item);
-        this.valorTotal = this.valorTotal.add(item.getValor());
-    }
-
-    public Pedido(String cliente, BigDecimal preco, int quantidade, TipoDesconto tipoDesconto, LocalDate data) {
-        this.cliente = cliente;
-        this.preco = preco;
-        this.quantidade = quantidade;
-        this.tipoDesconto = tipoDesconto;
-        this.data = data;
-    }
-
-    public Pedido(Cliente cliente) {
-    }
-
     public void setData(LocalDate data) {
         this.data = data;
     }
 
-    public Pedido(List<ItemDePedido> listaDePedidos) {
-        this.listaDePedidos = listaDePedidos;
-    }
 }
