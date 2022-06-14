@@ -1,8 +1,10 @@
 package br.com.alura.comex.model.entities;
 
 import br.com.alura.comex.model.enums.Status;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "categorias")
@@ -10,15 +12,13 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
+    @NotEmpty
     private String nome;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    public Categoria(String nome, Status status) {
-        this.nome = nome;
-        this.status = status;
-    }
 
     public Categoria() {
     }

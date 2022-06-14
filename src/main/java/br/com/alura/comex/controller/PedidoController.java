@@ -1,0 +1,73 @@
+package br.com.alura.comex.controller;
+
+import br.com.alura.comex.model.entities.Pedido;
+import br.com.alura.comex.repository.PedidoRepository;
+import br.com.alura.comex.service.PedidoService;
+import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/pedido")
+@Api(value = "API REST Pedido")
+@CrossOrigin(origins = "*")
+public class PedidoController {
+
+    @Autowired
+    PedidoRepository pedidoRepository;
+    @Autowired
+    PedidoService pedidoService;
+
+    @GetMapping
+    @Operation(summary = "Lista todos os pedidos")
+    public ResponseEntity<List<Pedido>> listarTodos() {
+        List<Pedido> lista = pedidoService.listarTodos();
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Lista o pedido com ID correspondente")
+    public ResponseEntity<Pedido> listarPorCodigo(@PathVariable Long id) {
+        Pedido pedido = pedidoService.listarPorCodigo(id);
+        return new ResponseEntity<Pedido>(pedido, HttpStatus.OK);
+
+    }
+
+    @PostMapping("/cadastro")
+    @Operation(summary = "Insere um pedido no banco de dados")
+    public ResponseEntity<Pedido> inserir(@RequestBody @Valid Pedido pedido) {
+        pedidoService.inserir(pedido);
+        return new ResponseEntity<>(pedido, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualiza o pedido com ID correspondente")
+    public ResponseEntity<Pedido> atualizar(@Valid @PathVariable Long id, @RequestBody Pedido pedido) {
+        boolean pedidoExiste = this.pedidoRepository.existsById(pedido.getId());
+
+        if (!pedidoExiste) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        pedido.setId(id);
+        pedido = pedidoService.atualizar(pedido);
+
+        return new ResponseEntity<>(pedido, HttpStatus.OK);
+    }
+
+    @DeleteMapping("{id}")
+    @Operation(summary = "Remove o pedido com ID correspondente")
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+
+        if (!pedidoRepository.existsById(id)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        pedidoService.remover(id);
+        return ResponseEntity.noContent().build();
+    }
+}

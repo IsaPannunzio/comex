@@ -2,6 +2,7 @@ package br.com.alura.comex.model.entities;
 
 
 import br.com.alura.comex.model.enums.TipoDesconto;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,26 +13,22 @@ public class ItemDePedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
+    @NotNull
     private BigDecimal precoUnitario = BigDecimal.ZERO;
+    @NotNull
     private int quantidade;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "produto_id")
+    @NotNull
     private Produto produto;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pedido_id")
+    @NotNull
     private Pedido pedido;
     private BigDecimal desconto;
     private TipoDesconto tipoDesconto;
-
-    public ItemDePedido(int quantidade, Produto produto, Pedido pedido, BigDecimal desconto, TipoDesconto tipoDeDesconto) {
-        this.quantidade = quantidade;
-        this.produto = produto;
-        this.pedido = pedido;
-        this.precoUnitario = produto.getPrecoUnitario();
-        this.desconto = desconto;
-        this.tipoDesconto = tipoDesconto;
-    }
 
     public ItemDePedido() {
 

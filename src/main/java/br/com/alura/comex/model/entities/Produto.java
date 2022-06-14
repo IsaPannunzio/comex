@@ -1,6 +1,9 @@
 package br.com.alura.comex.model.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 
 @Entity
@@ -9,25 +12,31 @@ public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
+    @NotEmpty
     private String nome;
+    @NotEmpty
     private String descricao;
+    @NotNull
     private BigDecimal precoUnitario = BigDecimal.ZERO;
+    @NotNull
     private int quantidadeEmEstoque;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
+    @NotNull
     private Categoria categoria;
-
-    public Produto(String nome, String descricao, BigDecimal precoUnitario, int quantidadeEmEstoque, Categoria categoria) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.precoUnitario = precoUnitario;
-        this.quantidadeEmEstoque = quantidadeEmEstoque;
-        this.categoria = categoria;
-    }
 
     public Produto() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {

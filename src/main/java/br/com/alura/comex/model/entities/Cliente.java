@@ -1,6 +1,9 @@
 package br.com.alura.comex.model.entities;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -9,15 +12,25 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
+    @NotEmpty
     private String nome;
+    @NotEmpty
     private String cpf;
+    @NotEmpty
     private String telefone;
+    @NotEmpty
     private String rua;
+    @NotEmpty
     private String numero;
+    @NotEmpty
     private String complemento;
+    @NotEmpty
     private String bairro;
+    @NotEmpty
     private String cidade;
+    @NotEmpty
     private String estado;
 
     @OneToMany(mappedBy = "cliente")
@@ -109,18 +122,6 @@ public class Cliente {
 
     public void setListaDePedidos(List<Pedido> listaDePedidos) {
         this.listaDePedidos = listaDePedidos;
-    }
-
-    public Cliente(String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
     }
 
     public Cliente() {

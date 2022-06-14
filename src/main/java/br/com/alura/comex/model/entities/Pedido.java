@@ -1,8 +1,10 @@
 package br.com.alura.comex.model.entities;
 
 import br.com.alura.comex.model.enums.TipoDesconto;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,15 +16,21 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
+    @NotNull
     private Categoria categoria;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "produto_id")
+    @NotNull
     private Produto produto;
+    @NotEmpty
     private String cliente;
+    @NotNull
     private BigDecimal preco;
+    @NotNull
     private int quantidade;
     @Enumerated(EnumType.STRING)
     private TipoDesconto tipoDesconto;
@@ -33,14 +41,6 @@ public class Pedido {
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemDePedido> listaDePedidos;
-
-    public Pedido(String cliente, BigDecimal preco, int quantidade, TipoDesconto tipoDesconto, LocalDate data) {
-        this.cliente = cliente;
-        this.preco = preco;
-        this.quantidade = quantidade;
-        this.tipoDesconto = tipoDesconto;
-        this.data = data;
-    }
 
     public Pedido() {
     }
