@@ -4,11 +4,8 @@ import br.com.alura.comex.model.enums.TipoDesconto;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
@@ -26,8 +23,10 @@ public class Pedido {
     @JoinColumn(name = "produto_id")
     @NotNull
     private Produto produto;
-    @NotEmpty
-    private String cliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
+    @NotNull
+    private Cliente cliente;
     @NotNull
     private BigDecimal preco;
     @NotNull
@@ -36,11 +35,6 @@ public class Pedido {
     private TipoDesconto tipoDesconto;
     private BigDecimal valorTotal = BigDecimal.ZERO;
     private LocalDate data;
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<ItemDePedido> itens = new ArrayList<>();
-
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<ItemDePedido> listaDePedidos;
 
     public Pedido() {
     }
@@ -51,14 +45,6 @@ public class Pedido {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
     }
 
     public BigDecimal getPreco() {
@@ -105,11 +91,12 @@ public class Pedido {
         this.tipoDesconto = tipoDesconto;
     }
 
-    public List<ItemDePedido> getListaDePedidos() {
-        return listaDePedidos;
+    public Cliente getCliente() {
+        return cliente;
     }
-    public void setListaDePedidos(List<ItemDePedido> listaDePedidos) {
-        this.listaDePedidos = listaDePedidos;
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public void setData(LocalDate data) {

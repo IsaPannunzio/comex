@@ -4,7 +4,8 @@ import br.com.alura.comex.model.enums.Status;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "categorias")
@@ -14,7 +15,8 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private Long id;
-    @NotEmpty
+    @NotBlank(message = "O campo deve ser preenchido")
+    @Pattern(regexp = "[A-Za-z ]{2,}+$", message = "O campo deve conter apenas letras e no mínimo 2 caracteres")
     private String nome;
     @NotNull
     @Enumerated(EnumType.STRING)

@@ -3,7 +3,9 @@ package br.com.alura.comex.model.entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Entity
@@ -14,23 +16,29 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private Long id;
-    @NotEmpty
+    @NotBlank(message = "O campo deve ser preenchido")
+    @Pattern(regexp = "[A-Za-z ]+$", message = "O campo deve conter apenas letras")
     private String nome;
-    @NotEmpty
+    @NotBlank(message = "O campo deve ser preenchido")
+    @Pattern(regexp = "\\d+$", message = "O campo deve conter apenas números")
     private String cpf;
-    @NotEmpty
+    @NotBlank(message = "O campo deve ser preenchido")
+    @Pattern(regexp = "\\d+$", message = "O campo deve conter apenas números")
     private String telefone;
     @NotEmpty
     private String rua;
-    @NotEmpty
+    @NotBlank(message = "O campo deve ser preenchido")
+    @Pattern(regexp = "\\d+$", message = "O campo deve conter apenas números")
     private String numero;
     @NotEmpty
     private String complemento;
     @NotEmpty
     private String bairro;
-    @NotEmpty
+    @NotBlank(message = "O campo deve ser preenchido")
+    @Pattern(regexp = "[A-Za-z ]+$", message = "O campo deve conter apenas letras")
     private String cidade;
-    @NotEmpty
+    @NotBlank(message = "O campo deve ser preenchido")
+    @Pattern(regexp = "[A-Za-z ]+$", message = "O campo deve conter apenas letras")
     private String estado;
 
     @OneToMany(mappedBy = "cliente")

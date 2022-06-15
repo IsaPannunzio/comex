@@ -3,7 +3,8 @@ package br.com.alura.comex.model.entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
 @Entity
@@ -14,11 +15,12 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private Long id;
-    @NotEmpty
+    @NotBlank(message = "O campo deve ser preenchido")
+    @Pattern(regexp = "[A-Za-z ]+$", message = "O campo deve conter apenas letras")
     private String nome;
-    @NotEmpty
     private String descricao;
     @NotNull
+    @Pattern(regexp = "\\d{0,2}+$", message = "O campo deve conter apenas números positivos")
     private BigDecimal precoUnitario = BigDecimal.ZERO;
     @NotNull
     private int quantidadeEmEstoque;
