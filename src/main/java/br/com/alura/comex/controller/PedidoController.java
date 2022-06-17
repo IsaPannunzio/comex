@@ -6,6 +6,7 @@ import br.com.alura.comex.service.PedidoService;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,16 @@ public class PedidoController {
     public ResponseEntity<List<Pedido>> listarTodos() {
         List<Pedido> lista = pedidoService.listarTodos();
         return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
+    @GetMapping("/page")
+    @Operation(summary = "Lista paginada de todos os pedidos")
+    public ResponseEntity<Page<Pedido>> obterPagina(
+            @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer linhasPorPage,
+            @RequestParam(defaultValue = "nome") String ordenarPor, @RequestParam(defaultValue = "ASC") String direcao){
+        Page<Pedido> listaPaginada = pedidoService.obterPagina(page, linhasPorPage, ordenarPor, direcao);
+
+        return ResponseEntity.ok().body(listaPaginada);
     }
 
     @GetMapping("/{id}")

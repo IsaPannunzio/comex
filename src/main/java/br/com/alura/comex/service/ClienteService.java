@@ -1,12 +1,15 @@
 package br.com.alura.comex.service;
 
 import br.com.alura.comex.model.entities.Cliente;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface ClienteService {
 
     List<Cliente> listarTodos();
+
+    public Page<Cliente> obterPagina(Integer page, Integer linhasPorPage, String ordenarPor, String direcao);
 
     Cliente listarPorCodigo(Long id);
 

@@ -4,6 +4,9 @@ import br.com.alura.comex.model.entities.Pedido;
 import br.com.alura.comex.repository.PedidoRepository;
 import br.com.alura.comex.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +21,12 @@ public class PedidoServiceImpl implements PedidoService {
     public List<Pedido> listarTodos() {
 
         return pedidoRepository.findAll();
+    }
+
+    @Override
+    public Page<Pedido> obterPagina(Integer page, Integer linhasPorPage, String ordenarPor, String direcao){
+        PageRequest pageRequest = PageRequest.of(page,linhasPorPage, Sort.Direction.valueOf(direcao), ordenarPor);
+        return pedidoRepository.findAll(pageRequest);
     }
 
     @Override

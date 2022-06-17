@@ -4,6 +4,9 @@ import br.com.alura.comex.model.entities.Cliente;
 import br.com.alura.comex.repository.ClienteRepository;
 import br.com.alura.comex.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +21,12 @@ public class ClienteServiceImpl implements ClienteService {
     public List<Cliente> listarTodos() {
 
         return clienteRepository.findAll();
+    }
+
+    @Override
+    public Page<Cliente> obterPagina(Integer page, Integer linhasPorPage, String ordenarPor, String direcao){
+        PageRequest pageRequest = PageRequest.of(page,linhasPorPage, Sort.Direction.valueOf(direcao), ordenarPor);
+        return clienteRepository.findAll(pageRequest);
     }
 
     @Override
