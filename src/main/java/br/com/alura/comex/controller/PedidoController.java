@@ -6,6 +6,8 @@ import br.com.alura.comex.service.PedidoService;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,7 @@ public class PedidoController {
     PedidoService pedidoService;
 
     @GetMapping
+    @Cacheable(value = "listaDePedidos")
     @Operation(summary = "Lista todos os pedidos")
     public ResponseEntity<List<Pedido>> listarTodos() {
         List<Pedido> lista = pedidoService.listarTodos();
@@ -33,6 +36,7 @@ public class PedidoController {
     }
 
     @GetMapping("/page")
+    @Cacheable(value = "listaPaginadaDePedidos")
     @Operation(summary = "Lista paginada de todos os pedidos")
     public ResponseEntity<Page<Pedido>> obterPagina(
             @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer linhasPorPage,
@@ -51,6 +55,7 @@ public class PedidoController {
     }
 
     @PostMapping("/cadastro")
+    @CacheEvict(value = {"listaDeClientes", "listaPaginadaDeClientes"}, allEntries = true)
     @Operation(summary = "Insere um pedido no banco de dados")
     public ResponseEntity<Pedido> inserir(@RequestBody @Valid Pedido pedido) {
         pedidoService.inserir(pedido);
@@ -58,6 +63,7 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
+    @CacheEvict(value = {"listaDeClientes", "listaPaginadaDeClientes"}, allEntries = true)
     @Operation(summary = "Atualiza o pedido com ID correspondente")
     public ResponseEntity<Pedido> atualizar(@Valid @PathVariable Long id, @RequestBody Pedido pedido) {
         boolean pedidoExiste = this.pedidoRepository.existsById(pedido.getId());
@@ -72,6 +78,7 @@ public class PedidoController {
     }
 
     @DeleteMapping("{id}")
+    @CacheEvict(value = {"listaDeClientes", "listaPaginadaDeClientes"}, allEntries = true)
     @Operation(summary = "Remove o pedido com ID correspondente")
     public ResponseEntity<Void> remover(@PathVariable Long id) {
 

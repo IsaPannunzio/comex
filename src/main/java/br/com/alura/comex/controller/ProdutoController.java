@@ -1,6 +1,5 @@
 package br.com.alura.comex.controller;
 
-import br.com.alura.comex.model.entities.Cliente;
 import br.com.alura.comex.model.entities.Produto;
 import br.com.alura.comex.repository.ProdutoRepository;
 import br.com.alura.comex.service.ProdutoService;
