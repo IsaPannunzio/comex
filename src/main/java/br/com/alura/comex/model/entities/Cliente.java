@@ -40,6 +40,8 @@ public class Cliente {
     @NotBlank(message = "O campo deve ser preenchido")
     @Pattern(regexp = "[A-Za-z ]+$", message = "O campo deve conter apenas letras")
     private String estado;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Usuario usuario;
 
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> listaDePedidos;
@@ -124,11 +126,32 @@ public class Cliente {
         this.estado = estado;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public List<Pedido> getListaDePedidos() {
         return listaDePedidos;
     }
 
     public void setListaDePedidos(List<Pedido> listaDePedidos) {
+        this.listaDePedidos = listaDePedidos;
+    }
+
+    public Cliente(String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado, Usuario usuario, List<Pedido> listaDePedidos) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.usuario = usuario;
         this.listaDePedidos = listaDePedidos;
     }
 
