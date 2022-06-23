@@ -18,11 +18,48 @@ public class Usuario implements UserDetails {
     private Long id;
     private String email;
     private String senha;
-    @OneToOne(mappedBy = "usuario")
-    private Cliente cliente;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Perfil> perfis = new ArrayList<>();
+
+    public List<Perfil> getPerfis() {
+        return perfis;
+    }
+
+    public void setPerfis(List<Perfil> perfis) {
+        this.perfis = perfis;
+    }
+
+    public Usuario(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
+
+    public Usuario() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -57,16 +94,5 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public Usuario(Long id, String email, String senha, Cliente cliente, List<Perfil> perfis) {
-        this.id = id;
-        this.email = email;
-        this.senha = senha;
-        this.cliente = cliente;
-        this.perfis = perfis;
-    }
-
-    public Usuario() {
     }
 }
