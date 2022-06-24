@@ -1,44 +1,48 @@
 package br.com.alura.comex.configuration.security;
 
+import br.com.alura.comex.configuration.security.service.AuthenticacaoService;
+import br.com.alura.comex.configuration.security.service.TokenService;
 import br.com.alura.comex.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
-@EnableWebSecurity
 @Configuration
-@Profile(value = {"prod", "test"})
 public class SecurityConfiguration {
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
 
     @Autowired
     private TokenService tokenService;
 
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private AuthenticacaoService autenticacaoService;
+
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    protected AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration, ApplicationContext context, ObjectPostProcessor<Object> objectPostProcessor) throws Exception {
+        authenticationConfiguration.authenticationManagerBuilder(objectPostProcessor, context)
+                .userDetailsService(autenticacaoService)
+                .passwordEncoder(new BCryptPasswordEncoder());
+        return authenticationConfiguration.getAuthenticationManager();
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((auth) -> {
@@ -54,14 +58,7 @@ public class SecurityConfiguration {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }).httpBasic(withDefaults());
+        }).httpBasic(Customizer.withDefaults());
         return http.build();
     }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**","/configuration/**", "/swagger-resources/**");
-    }
-
-
 }
