@@ -29,6 +29,14 @@ public class Produto {
     @NotNull
     private Categoria categoria;
 
+    public Produto(String nome, String descricao, BigDecimal precoUnitario, int quantidadeEmEstoque, Categoria categoria) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.precoUnitario = precoUnitario;
+        this.quantidadeEmEstoque = quantidadeEmEstoque;
+        this.categoria = categoria;
+    }
+
     public Produto() {
 
     }

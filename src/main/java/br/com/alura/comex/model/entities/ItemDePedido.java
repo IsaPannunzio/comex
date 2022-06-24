@@ -66,6 +66,11 @@ public class ItemDePedido {
         this.desconto = desconto;
     }
 
+    public void setPrecoUnitario(BigDecimal precoUnitario) {
+        this.precoUnitario = precoUnitario;
+    }
+
+
     public TipoDesconto getTipoDeDesconto() {
         return tipoDesconto;
     }

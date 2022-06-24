@@ -22,6 +22,10 @@ public class Categoria {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    public Categoria(String nome) {
+        this.nome = nome;
+    }
+
     public Categoria() {
     }
 
