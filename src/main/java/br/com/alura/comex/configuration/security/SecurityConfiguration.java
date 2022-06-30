@@ -26,6 +26,7 @@ public class SecurityConfiguration {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @Autowired

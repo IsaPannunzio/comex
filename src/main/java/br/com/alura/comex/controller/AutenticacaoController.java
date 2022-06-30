@@ -1,5 +1,6 @@
 package br.com.alura.comex.controller;
 
+import br.com.alura.comex.configuration.security.model.Token;
 import br.com.alura.comex.configuration.security.service.TokenService;
 import br.com.alura.comex.configuration.security.form.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class AutenticacaoController {
     private TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<br.com.alura.comex.configuration.security.model.Token> autenticar(@RequestBody @Valid LoginForm form) {
+    public ResponseEntity<Token> autenticar(@RequestBody @Valid LoginForm form) {
         UsernamePasswordAuthenticationToken dadosLogin = form.converter();
         try {
             Authentication authentication = authManager.authenticate(dadosLogin);
