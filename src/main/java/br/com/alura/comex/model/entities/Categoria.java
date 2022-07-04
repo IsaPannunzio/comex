@@ -22,7 +22,7 @@ public class Categoria {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    public Categoria(String nome) {
+    public Categoria(String nome, Status status) {
         this.nome = nome;
     }
 

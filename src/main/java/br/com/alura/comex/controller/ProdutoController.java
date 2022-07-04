@@ -3,7 +3,6 @@ package br.com.alura.comex.controller;
 import br.com.alura.comex.model.entities.Produto;
 import br.com.alura.comex.repository.ProdutoRepository;
 import br.com.alura.comex.service.ProdutoService;
-import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/produto")
-@Api(value = "API REST Produto")
 @CrossOrigin(origins = "*")
 public class ProdutoController {
 

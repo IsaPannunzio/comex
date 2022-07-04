@@ -3,7 +3,6 @@ package br.com.alura.comex.controller;
 import br.com.alura.comex.model.entities.Pedido;
 import br.com.alura.comex.repository.PedidoRepository;
 import br.com.alura.comex.service.PedidoService;
-import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -18,7 +17,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pedido")
-@Api(value = "API REST Pedido")
 @CrossOrigin(origins = "*")
 public class PedidoController {
 

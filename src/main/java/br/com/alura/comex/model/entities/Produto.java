@@ -37,7 +37,7 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public Produto() {
+    public Produto(String nome, String descricao, BigDecimal precoUnitario, long quantidadeEmEstoque, Categoria categoria) {
 
     }
 

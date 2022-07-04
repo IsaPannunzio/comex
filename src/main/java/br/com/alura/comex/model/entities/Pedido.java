@@ -6,6 +6,8 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
@@ -36,7 +38,7 @@ public class Pedido {
     private BigDecimal valorTotal = BigDecimal.ZERO;
     private LocalDate data;
 
-    public Pedido() {
+    public Pedido(LocalDateTime data, Cliente cliente, BigDecimal desconto, TipoDesconto tipoDesconto, List<ItemDePedido> listaDePedidos) {
     }
 
     public Long getId() {

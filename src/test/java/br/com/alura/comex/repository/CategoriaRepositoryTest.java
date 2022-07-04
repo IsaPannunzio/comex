@@ -1,72 +1,52 @@
 package br.com.alura.comex.repository;
 
+import br.com.alura.comex.builder.CategoriaBuilder;
 import br.com.alura.comex.model.entities.Categoria;
-import br.com.alura.comex.model.entities.Produto;
+import br.com.alura.comex.model.enums.Status;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.math.BigDecimal;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.tuple;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
-class CategoriaRepositoryTest {
+public class CategoriaRepositoryTest {
 
-  @Autowired
-  private CategoriaRepository categoriaRepository;
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
-  @Autowired
-  private  ProdutoRepository produtoRepository;
+    @Test
+    public void deveRetornarDoisRegistros() {
 
-//  @Autowired
-//  private TestEntityManager testEntityManager;
+        Categoria categoria1 =
+                new CategoriaBuilder()
+                        .comNome("LIVROS")
+                        .comStatus(Status.ATIVA)
+                        .build();
 
-  @Test
-  public void deveRetornarUmaCategoria(){
+        Categoria categoria2 =
+                new CategoriaBuilder()
+                        .comNome("JOGOS")
+                        .comStatus(Status.ATIVA)
+                        .build();
 
-    List<Categoria> categorias = categoriaRepository.findAll();
-    assertNotNull(categorias);
+        categoriaRepository.save(categoria1);
+        categoriaRepository.save(categoria2);
 
-  }
+        List<Categoria> resultado = categoriaRepository.findAll();
 
-  @Test
-  public void deveCadastrarDuasCategorias(){
-
-    List<Categoria> categorias = List.of(
-            new Categoria("JOGOS"),
-            new Categoria("LIVROS")
-    );
-
-    List<Produto> produtos = List.of(
-            new Produto("Skyrim",
-                    "Quinto jogo da saga The Elder Scrolls",
-                    new BigDecimal("160"),
-                    100,
-                    categorias.get(0)),
-            new Produto("Lago Sem Nome",
-                    "Autobiografia",
-                    new BigDecimal("50"),
-                    50,
-                    categorias.get(1))
-    );
-
-    categoriaRepository.saveAll(categorias);
-    List<Categoria> categoriaList = categoriaRepository.findAll();
-
-
-    produtoRepository.saveAll(produtos);
-    List<Produto> produtoList = produtoRepository.findAll();
-
-
-    assertNotNull(categoriaList);
-    assertNotNull(produtoList);
-  }
+        assertThat(resultado)
+                .extracting(Categoria::getNome, Categoria::getStatus)
+                .contains(
+                        tuple("LIVROS", Status.ATIVA),
+                        tuple("JOGOS", Status.ATIVA)
+                );
+    }
 }

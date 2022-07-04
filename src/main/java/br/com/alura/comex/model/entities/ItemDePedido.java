@@ -30,7 +30,7 @@ public class ItemDePedido {
     private BigDecimal desconto;
     private TipoDesconto tipoDesconto;
 
-    public ItemDePedido() {
+    public ItemDePedido(BigDecimal precoUnitario, long quantidade, Produto produto, BigDecimal desconto, TipoDesconto tipoDesconto) {
 
     }
 

@@ -141,7 +141,7 @@ public class Cliente {
         this.listaDePedidos = listaDePedidos;
     }
 
-    public Cliente(String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado, Usuario usuario, List<Pedido> listaDePedidos) {
+    public Cliente(String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado, List<Pedido> listaDePedidos) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -151,7 +151,6 @@ public class Cliente {
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
-        this.usuario = usuario;
         this.listaDePedidos = listaDePedidos;
     }
 
