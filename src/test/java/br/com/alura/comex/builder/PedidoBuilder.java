@@ -1,9 +1,9 @@
 package br.com.alura.comex.builder;
 
-import br.com.alura.comex.model.entities.Cliente;
-import br.com.alura.comex.model.entities.ItemDePedido;
-import br.com.alura.comex.model.entities.Pedido;
-import br.com.alura.comex.model.enums.TipoDesconto;
+import br.com.alura.comex.dominio.model.entities.Cliente;
+import br.com.alura.comex.dominio.model.entities.ItemDePedido;
+import br.com.alura.comex.dominio.model.entities.Pedido;
+import br.com.alura.comex.dominio.model.enums.TipoDesconto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

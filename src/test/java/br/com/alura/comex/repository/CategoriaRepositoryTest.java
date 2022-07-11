@@ -1,8 +1,9 @@
 package br.com.alura.comex.repository;
 
 import br.com.alura.comex.builder.CategoriaBuilder;
-import br.com.alura.comex.model.entities.Categoria;
-import br.com.alura.comex.model.enums.Status;
+import br.com.alura.comex.infra.repository.CategoriaRepository;
+import br.com.alura.comex.dominio.model.entities.Categoria;
+import br.com.alura.comex.dominio.model.enums.Status;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

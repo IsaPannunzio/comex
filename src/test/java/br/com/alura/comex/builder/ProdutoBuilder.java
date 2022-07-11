@@ -1,8 +1,8 @@
 package br.com.alura.comex.builder;
 
-import br.com.alura.comex.model.entities.Categoria;
-import br.com.alura.comex.model.entities.ItemDePedido;
-import br.com.alura.comex.model.entities.Produto;
+import br.com.alura.comex.dominio.model.entities.Categoria;
+import br.com.alura.comex.dominio.model.entities.ItemDePedido;
+import br.com.alura.comex.dominio.model.entities.Produto;
 
 import java.math.BigDecimal;
 import java.util.List;

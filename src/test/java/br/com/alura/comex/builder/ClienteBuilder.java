@@ -1,7 +1,7 @@
 package br.com.alura.comex.builder;
 
-import br.com.alura.comex.model.entities.Cliente;
-import br.com.alura.comex.model.entities.Pedido;
+import br.com.alura.comex.dominio.model.entities.Cliente;
+import br.com.alura.comex.dominio.model.entities.Pedido;
 
 import java.util.List;
 
