@@ -16,7 +16,7 @@ public class Produto {
     @NotNull
     private Long id;
     @NotBlank(message = "O campo deve ser preenchido")
-    @Pattern(regexp = "[A-Za-z ]+$", message = "O campo deve conter apenas letras")
+    @Pattern(regexp = "/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/", message = "O campo deve conter apenas letras")
     private String nome;
     private String descricao;
     @NotNull
@@ -39,6 +39,9 @@ public class Produto {
 
     public Produto(String nome, String descricao, BigDecimal precoUnitario, long quantidadeEmEstoque, Categoria categoria) {
 
+    }
+
+    public Produto() {
     }
 
     public Long getId() {

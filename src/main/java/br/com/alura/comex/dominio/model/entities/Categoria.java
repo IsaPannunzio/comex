@@ -24,6 +24,7 @@ public class Categoria {
 
     public Categoria(String nome, Status status) {
         this.nome = nome;
+        this.status = status;
     }
 
     public Categoria() {

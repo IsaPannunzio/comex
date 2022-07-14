@@ -41,6 +41,9 @@ public class Pedido {
     public Pedido(LocalDateTime data, Cliente cliente, BigDecimal desconto, TipoDesconto tipoDesconto, List<ItemDePedido> listaDePedidos) {
     }
 
+    public Pedido() {
+    }
+
     public Long getId() {
         return id;
     }

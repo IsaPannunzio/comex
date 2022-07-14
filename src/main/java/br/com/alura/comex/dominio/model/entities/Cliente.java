@@ -17,7 +17,7 @@ public class Cliente {
     @NotNull
     private Long id;
     @NotBlank(message = "O campo deve ser preenchido")
-    @Pattern(regexp = "[A-Za-z ]+$", message = "O campo deve conter apenas letras")
+    @Pattern(regexp = "/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/", message = "O campo deve conter apenas letras")
     private String nome;
     @NotBlank(message = "O campo deve ser preenchido")
     @Pattern(regexp = "\\d+$", message = "O campo deve conter apenas números")
@@ -35,10 +35,10 @@ public class Cliente {
     @NotEmpty
     private String bairro;
     @NotBlank(message = "O campo deve ser preenchido")
-    @Pattern(regexp = "[A-Za-z ]+$", message = "O campo deve conter apenas letras")
+    @Pattern(regexp = "/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/", message = "O campo deve conter apenas letras")
     private String cidade;
     @NotBlank(message = "O campo deve ser preenchido")
-    @Pattern(regexp = "[A-Za-z ]+$", message = "O campo deve conter apenas letras")
+    @Pattern(regexp = "/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/", message = "O campo deve conter apenas letras")
     private String estado;
     @OneToOne(cascade = CascadeType.ALL)
     private Usuario usuario;

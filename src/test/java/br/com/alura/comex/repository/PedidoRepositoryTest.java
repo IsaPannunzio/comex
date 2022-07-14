@@ -65,7 +65,7 @@ public class PedidoRepositoryTest {
                 .build();
 
         Cliente cliente = new ClienteBuilder()
-                .comNome("Cliente 1")
+                .comNome("Cliente Um")
                 .comCpf("1267867812")
                 .comTelefone("1989712380")
                 .comRua("Rua Um")

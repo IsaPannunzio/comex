@@ -34,6 +34,9 @@ public class ItemDePedido {
 
     }
 
+    public ItemDePedido() {
+    }
+
     public int getQuantidade() {
         return quantidade;
     }
