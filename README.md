@@ -53,4 +53,4 @@ O sistema de notas fiscais será um projeto separado do de pagamento, pois são 
 
 #### Diagramas feitos de acordo com as sugestões apresentadas no plantão do dia 20/07/2022:
 
-![](src/main/resources/images/Diagrama sem nome.jpg)
+<img align="center" alt="Diagrama-servicos" height="1000" width="900" src="src/main/resources/images/Diagrama sem nome.jpg">
