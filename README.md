@@ -38,3 +38,19 @@ Sim, utilizarei um API Gateway. Ele realizará um controle de de acesso entre os
 
 #### 4 - O sistema de notas fiscais será um projeto separado do de pagamentos ou os times serão unidos?
 O sistema de notas fiscais será um projeto separado do de pagamento, pois são coisas diferentes e devem ser independentes.
+
+
+### Planeje e faça um diagrama da integração entre os serviços:
+
+    Loja (o comex que você vem trabalhando)
+    Pagamentos
+    Notas fiscais
+
+* Quando um pedido for feito na loja, deve ser criado um pagamento e gerada a nota fiscal.
+* Pense em integrações síncronas e assíncronas.
+* Para as integrações síncronas, pense em chamadas HTTP entre os serviços.
+* Para as integrações assícronas, pense em tópicos, partições, chaves e consumer groups, usando JSON como formato de mensagens no Kafka.
+
+#### Diagramas feitos de acordo com as sugestões apresentadas no plantão do dia 20/07/2022:
+
+![](src/main/resources/images/Diagrama sem nome.jpg)
